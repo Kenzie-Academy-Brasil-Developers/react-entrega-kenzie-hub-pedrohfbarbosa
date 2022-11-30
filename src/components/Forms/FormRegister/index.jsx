@@ -1,21 +1,20 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { requestRegister } from "../../../services/api";
+import { schemaRegister } from "./schema";
 import { Form } from "../../../styles/globalComponents/Form/FormStyled";
+import { InputWrapper } from "../../InputWrapper";
 import { Input } from "../../../styles/globalComponents/Input/InputStyled";
 import { Select } from "../../../styles/globalComponents/Select/SelectStyled";
-import { TextStyled } from "../../../styles/globalComponents/Text/TextStyled";
 import { Button } from "../../../styles/globalComponents/Button/ButtonStyled";
-import { instance, requestRegister } from "../../../services/api";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { schemaRegister } from "./schema";
 
 export const FormRegister = ({ setIsLoading }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showSecondPassword, setShowSecondPassword] = useState(false);
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   const {
     register,
@@ -31,42 +30,23 @@ export const FormRegister = ({ setIsLoading }) => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div>
-        <TextStyled type="label" color="greyZero" fontType="headline">
-          Nome
-        </TextStyled>
+      <InputWrapper label="Nome" error={errors.name}>
         <Input
           type="text"
           placeholder="Digite aqui seu nome"
           {...register("name")}
         />
-        {errors.name && (
-          <TextStyled type="span" color="greyZero" fontType="headline">
-            {errors.name.message}
-          </TextStyled>
-        )}
-      </div>
+      </InputWrapper>
 
-      <div>
-        <TextStyled type="label" color="greyZero" fontType="headline">
-          E-mail
-        </TextStyled>
+      <InputWrapper label="E-mail" error={errors.email}>
         <Input
           type="email"
           placeholder="Digite seu e-mail"
           {...register("email")}
         />
-        {errors.email && (
-          <TextStyled type="span" color="greyZero" fontType="headline">
-            {errors.email.message}
-          </TextStyled>
-        )}
-      </div>
+      </InputWrapper>
 
-      <div>
-        <TextStyled type="label" color="greyZero" fontType="headline">
-          Senha
-        </TextStyled>
+      <InputWrapper label="Senha" error={errors.password}>
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
@@ -79,17 +59,9 @@ export const FormRegister = ({ setIsLoading }) => {
           placeholder="Digite sua senha"
           {...register("password")}
         />
-        {errors.password && (
-          <TextStyled type="span" color="greyZero" fontType="headline">
-            {errors.password.message}
-          </TextStyled>
-        )}
-      </div>
+      </InputWrapper>
 
-      <div>
-        <TextStyled type="label" color="greyZero" fontType="headline">
-          Confirme sua senha
-        </TextStyled>
+      <InputWrapper label="Confirme sua senha" error={errors.confirmPassword}>
         <button
           type="button"
           onClick={() => setShowSecondPassword(!showSecondPassword)}
@@ -102,45 +74,21 @@ export const FormRegister = ({ setIsLoading }) => {
           placeholder="Confirme sua senha"
           {...register("confirmPassword")}
         />
-        {errors.confirmPassword && (
-          <TextStyled type="span" color="greyZero" fontType="headline">
-            {errors.confirmPassword.message}
-          </TextStyled>
-        )}
-      </div>
+      </InputWrapper>
 
-      <div>
-        <TextStyled type="label" color="greyZero" fontType="headline">
-          Bio
-        </TextStyled>
+      <InputWrapper label="Bio" error={errors.bio}>
         <Input type="text" placeholder="Fale sobre você" {...register("bio")} />
-        {errors.bio && (
-          <TextStyled type="span" color="greyZero" fontType="headline">
-            {errors.bio.message}
-          </TextStyled>
-        )}
-      </div>
+      </InputWrapper>
 
-      <div>
-        <TextStyled type="label" color="greyZero" fontType="headline">
-          Contato
-        </TextStyled>
+      <InputWrapper label="Contato" error={errors.contact}>
         <Input
           type="text"
           placeholder="Opção de contato"
           {...register("contact")}
         />
-        {errors.contact && (
-          <TextStyled type="span" color="greyZero" fontType="headline">
-            {errors.contact.message}
-          </TextStyled>
-        )}
-      </div>
+      </InputWrapper>
 
-      <div>
-        <TextStyled type="label" color="greyZero" fontType="headline">
-          Selecionar módulo
-        </TextStyled>
+      <InputWrapper label="Selecionar módulo" error={errors.course_module}>
         <Select {...register("course_module")}>
           <option value="">Selecione seu módulo</option>
           <option value="Primeiro módulo (Introdução ao Frontend)">
@@ -156,12 +104,7 @@ export const FormRegister = ({ setIsLoading }) => {
             Quarto módulo
           </option>
         </Select>
-        {errors.course_module && (
-          <TextStyled type="span" color="greyZero" fontType="headline">
-            {errors.course_module.message}
-          </TextStyled>
-        )}
-      </div>
+      </InputWrapper>
 
       <Button type="submit" btnType="primary">
         Entrar

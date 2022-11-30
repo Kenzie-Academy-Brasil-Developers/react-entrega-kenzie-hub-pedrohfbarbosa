@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { Form } from "../../../styles/globalComponents/Form/FormStyled";
-import { Input } from "../../../styles/globalComponents/Input/InputStyled";
-import { TextStyled } from "../../../styles/globalComponents/Text/TextStyled";
-import { Button } from "../../../styles/globalComponents/Button/ButtonStyled";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "../../../services/api";
 import { schemaLogin } from "./schema";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { Form } from "../../../styles/globalComponents/Form/FormStyled";
+import { InputWrapper } from "../../InputWrapper";
+import { Input } from "../../../styles/globalComponents/Input/InputStyled";
+import { Button } from "../../../styles/globalComponents/Button/ButtonStyled";
+
 export const FormLogin = ({ setUser, setIsLoading }) => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -27,24 +28,15 @@ export const FormLogin = ({ setUser, setIsLoading }) => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <TextStyled type="label" color="greyZero" fontType="headline">
-          E-mail
-        </TextStyled>
+      <InputWrapper label="E-mail" error={errors.email}>
         <Input
           type="email"
           placeholder="Digite seu e-mail"
           {...register("email")}
         />
-        <TextStyled type="span" color="greyZero" fontType="headline">
-          {errors.email && errors.email.message}
-        </TextStyled>
-      </div>
+      </InputWrapper>
 
-      <div>
-        <TextStyled type="label" color="greyZero" fontType="headline">
-          Senha
-        </TextStyled>
+      <InputWrapper label="Senha" error={errors.password}>
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
@@ -57,10 +49,7 @@ export const FormLogin = ({ setUser, setIsLoading }) => {
           placeholder="Digite sua senha"
           {...register("password")}
         />
-        <TextStyled type="span" color="greyZero" fontType="headline">
-          {errors.password && errors.password.message}
-        </TextStyled>
-      </div>
+      </InputWrapper>
 
       <Button type="submit" btnType="primary">
         Entrar
