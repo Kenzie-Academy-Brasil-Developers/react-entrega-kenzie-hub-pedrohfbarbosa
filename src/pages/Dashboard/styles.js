@@ -9,8 +9,8 @@ export const DashboardStyled = styled.div`
     height: 7.375rem;
     display: flex;
     align-items: center;
-    border-top: 1px solid ${(props) => props.theme.greyThree};
-    border-bottom: 1px solid ${(props) => props.theme.greyThree};
+    border-top: 1px solid ${({theme}) => theme.greyThree};
+    border-bottom: 1px solid ${({theme}) => theme.greyThree};
   }
 
   & main > div:nth-of-type(1) > div {

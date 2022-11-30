@@ -21,8 +21,8 @@ export const RegisterPageStyled = styled.div`
     flex-direction: column;
     gap: 2rem;
     width: 100%;
-    background-color: ${(props) => props.theme.greyThree};
-    border-radius: ${(props) => props.theme.radiusOne};
+    background-color: ${({ theme }) => theme.greyThree};
+    border-radius: ${({ theme }) => theme.radiusOne};
     padding: 2.625rem 1.375rem;
   }
 

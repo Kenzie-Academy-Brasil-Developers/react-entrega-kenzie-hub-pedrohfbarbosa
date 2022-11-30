@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { requestRegister } from "../../../services/api";
+import { requestRegister } from "../../../services/api/requestRegister";
 import { schemaRegister } from "./schema";
 import { Form } from "../../../styles/globalComponents/Form/FormStyled";
 import { InputWrapper } from "../../InputWrapper";
 import { Input } from "../../../styles/globalComponents/Input/InputStyled";
 import { Select } from "../../../styles/globalComponents/Select/SelectStyled";
 import { Button } from "../../../styles/globalComponents/Button/ButtonStyled";
+import { ButtonView } from "../ButtonView";
 
 export const FormRegister = ({ setIsLoading }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,13 +47,10 @@ export const FormRegister = ({ setIsLoading }) => {
       </InputWrapper>
 
       <InputWrapper label="Senha" error={errors.password}>
-        <button
-          type="button"
-          onClick={() => setShowPassword(!showPassword)}
-          className="btnShow"
-        >
-          {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
-        </button>
+        <ButtonView
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+        />
         <Input
           type={showPassword ? "text" : "password"}
           placeholder="Digite sua senha"
@@ -62,13 +59,10 @@ export const FormRegister = ({ setIsLoading }) => {
       </InputWrapper>
 
       <InputWrapper label="Confirme sua senha" error={errors.confirmPassword}>
-        <button
-          type="button"
-          onClick={() => setShowSecondPassword(!showSecondPassword)}
-          className="btnShow"
-        >
-          {showSecondPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
-        </button>
+        <ButtonView
+          showPassword={showSecondPassword}
+          setShowPassword={setShowSecondPassword}
+        />
         <Input
           type={showSecondPassword ? "text" : "password"}
           placeholder="Confirme sua senha"

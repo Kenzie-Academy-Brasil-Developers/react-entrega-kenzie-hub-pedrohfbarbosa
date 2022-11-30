@@ -6,7 +6,9 @@ export const InputWrapper = ({ children, label, error }) => {
       <TextStyled type="label" color="greyZero" fontType="headline">
         {label}
       </TextStyled>
+
       {children}
+
       {error && (
         <TextStyled type="span" color="greyZero" fontType="headline">
           {error.message}

@@ -5,9 +5,9 @@ export const Link = styled(LinkRouter)`
   cursor: pointer;
 
   border: none;
-  border-radius: ${(props) => props.theme.radiusOne};
+  border-radius: ${({ theme }) => theme.radiusOne};
 
-  width: ${(props) => props.width};
+  width: ${({ width }) => width};
   height: 3rem;
   padding: 0 1.375rem;
 
@@ -19,39 +19,39 @@ export const Link = styled(LinkRouter)`
   font-weight: 500;
   text-decoration: none;
 
-  color: ${(props) => props.theme.white};
+  color: ${({ theme }) => theme.white};
 
-  ${(props) => {
-    switch (props.type) {
+  ${({ linkStyle }) => {
+    switch (linkStyle) {
       case "primary":
         return css`
-          background-color: ${(props) => props.theme.primary};
+          background-color: ${({ theme }) => theme.primary};
 
           &:hover {
-            background-color: ${(props) => props.theme.primaryFocus};
+            background-color: ${({ theme }) => theme.primaryFocus};
           }
         `;
       case "negative":
         return css`
-          background-color: ${(props) => props.theme.primaryNegative};
+          background-color: ${({ theme }) => theme.primaryNegative};
         `;
       case "disabled":
         return css`
-          background-color: ${(props) => props.theme.greyOne};
+          background-color: ${({ theme }) => theme.greyOne};
 
           &:hover {
-            background-color: ${(props) => props.theme.greyTwo};
+            background-color: ${({ theme }) => theme.greyTwo};
           }
         `;
       case "linkMinor":
         return css`
-          background-color: ${(props) => props.theme.greyThree};
+          background-color: ${({ theme }) => theme.greyThree};
           height: 2rem;
           font-size: 0.75rem;
           font-weight: 600;
           padding: 0 1rem;
           &:hover {
-            background-color: ${(props) => props.theme.greyTwo};
+            background-color: ${({ theme }) => theme.greyTwo};
           }
         `;
 

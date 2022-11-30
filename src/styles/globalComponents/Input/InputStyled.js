@@ -2,31 +2,31 @@ import styled from "styled-components";
 
 export const Input = styled.input`
   height: 48px;
-  width: ${(props) => props.width};
+  width: ${({ width }) => width};
   padding: 0 1rem;
 
   font-size: 1rem;
   font-weight: 400;
-  color: ${(props) => props.theme.greyZero};
+  color: ${({ theme }) => theme.greyZero};
 
   outline: none;
 
   border: 1px solid transparent;
-  border-radius: ${(props) => props.theme.radiusOne};
+  border-radius: ${({ theme }) => theme.radiusOne};
 
-  background-color: ${(props) => props.theme.greyTwo};
+  background-color: ${({ theme }) => theme.greyTwo};
 
   &:focus {
-    border: 1px solid ${(props) => props.theme.greyZero};
+    border: 1px solid ${({ theme }) => theme.greyZero};
   }
 
   &:focus::placeholder {
-    color: ${(props) => props.theme.greyZero};
+    color: ${({ theme }) => theme.greyZero};
   }
 
   &::placeholder {
     font-size: 1rem;
     font-weight: 400;
-    color: ${(props) => props.theme.greyOne};
+    color: ${({ theme }) => theme.greyOne};
   }
 `;

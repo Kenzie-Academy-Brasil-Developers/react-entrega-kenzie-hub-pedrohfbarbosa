@@ -21,10 +21,11 @@ export const RegisterPage = ({ setUser }) => {
     <RegisterPageStyled>
       <div>
         <Header>
-          <Link to="/" type="linkMinor">
+          <Link to="/" linkStyle="linkMinor">
             Voltar
           </Link>
         </Header>
+
         <div>
           <TextStyled type="legend" color="greyZero" fontType="titleOne">
             Crie sua conta

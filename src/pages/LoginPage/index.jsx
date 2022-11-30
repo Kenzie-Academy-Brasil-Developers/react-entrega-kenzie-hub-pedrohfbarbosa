@@ -17,6 +17,7 @@ export const LoginPage = ({ setUser }) => {
       </LoginPageStyled>
     );
   }
+
   return (
     <LoginPageStyled>
       <div>
@@ -32,7 +33,7 @@ export const LoginPage = ({ setUser }) => {
             Ainda não possui uma conta?
           </TextStyled>
 
-          <Link to="/register" type="disabled">
+          <Link to="/register" linkStyle="disabled">
             Cadastre-se
           </Link>
         </div>

@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { requestLogin } from "../../../services/api";
+import { requestLogin } from "../../../services/api/requestLogin";
 import { schemaLogin } from "./schema";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Form } from "../../../styles/globalComponents/Form/FormStyled";
 import { InputWrapper } from "../../InputWrapper";
 import { Input } from "../../../styles/globalComponents/Input/InputStyled";
 import { Button } from "../../../styles/globalComponents/Button/ButtonStyled";
+import { ButtonView } from "../ButtonView";
 
 export const FormLogin = ({ setUser, setIsLoading }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,13 +37,10 @@ export const FormLogin = ({ setUser, setIsLoading }) => {
       </InputWrapper>
 
       <InputWrapper label="Senha" error={errors.password}>
-        <button
-          type="button"
-          onClick={() => setShowPassword(!showPassword)}
-          className="btnShow"
-        >
-          {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
-        </button>
+        <ButtonView
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+        />
         <Input
           type={showPassword ? "text" : "password"}
           placeholder="Digite sua senha"
