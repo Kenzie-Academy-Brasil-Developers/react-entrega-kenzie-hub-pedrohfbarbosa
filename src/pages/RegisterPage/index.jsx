@@ -1,5 +1,5 @@
-import { RegisterPageStyled } from "./styles";
 import { useState } from "react";
+import { RegisterPageStyled } from "./styles";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 import { FormRegister } from "./FormRegister";
 import { Header } from "../../components/Header";
