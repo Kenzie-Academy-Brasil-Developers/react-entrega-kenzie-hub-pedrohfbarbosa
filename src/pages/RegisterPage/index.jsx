@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { RegisterPageStyled } from "./styles";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
@@ -18,26 +19,33 @@ export const RegisterPage = ({ setUser }) => {
     );
   }
   return (
-    <RegisterPageStyled>
-      <div>
-        <Header>
-          <Link to="/" linkStyle="linkMinor">
-            Voltar
-          </Link>
-        </Header>
-
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <RegisterPageStyled>
         <div>
-          <TextStyled tag="h2" color="greyZero" fontType="titleOne">
-            Crie sua conta
-          </TextStyled>
+          <Header>
+            <Link to="/" anchor="linkMinor">
+              Voltar
+            </Link>
+          </Header>
 
-          <TextStyled tag="span" color="greyOne" fontType="headline">
-            Rapido e grátis, vamos nessa
-          </TextStyled>
+          <div>
+            <TextStyled tag="h2" color="greyZero" fontType="titleOne">
+              Crie sua conta
+            </TextStyled>
 
-          <FormRegister setUser={setUser} setIsLoading={setIsLoading} />
+            <TextStyled tag="span" color="greyOne" fontType="headline">
+              Rapido e grátis, vamos nessa
+            </TextStyled>
+
+            <FormRegister setUser={setUser} setIsLoading={setIsLoading} />
+          </div>
         </div>
-      </div>
-    </RegisterPageStyled>
+      </RegisterPageStyled>
+    </motion.div>
   );
 };

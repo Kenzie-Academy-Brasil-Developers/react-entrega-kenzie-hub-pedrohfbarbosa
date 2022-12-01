@@ -1,10 +1,10 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { Logo } from "../../components/Logo";
 import { LoginPageStyled } from "./styles";
 import { FormLogin } from "./FormLogin";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 import { Link } from "../../styles/globalComponents/Link/LinkStyled";
-
 export const LoginPage = ({ setUser }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,25 +19,32 @@ export const LoginPage = ({ setUser }) => {
   }
 
   return (
-    <LoginPageStyled>
-      <div>
-        <Logo />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: .8 }}
+    >
+      <LoginPageStyled>
         <div>
-          <TextStyled tag="h2" color="greyZero" fontType="titleOne">
-            Login
-          </TextStyled>
+          <Logo />
+          <div>
+            <TextStyled tag="h2" color="greyZero" fontType="titleOne">
+              Login
+            </TextStyled>
 
-          <FormLogin setUser={setUser} setIsLoading={setIsLoading} />
+            <FormLogin setUser={setUser} setIsLoading={setIsLoading} />
 
-          <TextStyled tag="span" color="greyZero" fontType="headline">
-            Ainda não possui uma conta?
-          </TextStyled>
+            <TextStyled tag="span" color="greyZero" fontType="headline">
+              Ainda não possui uma conta?
+            </TextStyled>
 
-          <Link to="/register" linkStyle="disabled">
-            Cadastre-se
-          </Link>
+            <Link to="/register" anchor="disabled">
+              Cadastre-se
+            </Link>
+          </div>
         </div>
-      </div>
-    </LoginPageStyled>
+      </LoginPageStyled>
+    </motion.div>
   );
 };
