@@ -141,7 +141,7 @@ export const FormRegister = ({ setIsLoading }) => {
       </InputWrapper>
 
       <Button type="submit" btnType="primary">
-        Entrar
+        Cadastrar
       </Button>
     </Form>
   );
