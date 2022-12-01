@@ -1,7 +1,7 @@
 import { Logo } from "../../components/Logo";
 import { LoginPageStyled } from "./styles";
 import { useState } from "react";
-import { FormLogin } from "../../components/Forms/FormLogin";
+import { FormLogin } from "./FormLogin";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 import { Link } from "../../styles/globalComponents/Link/LinkStyled";
 
@@ -11,7 +11,7 @@ export const LoginPage = ({ setUser }) => {
   if (isLoading) {
     return (
       <LoginPageStyled>
-        <TextStyled type="legend" color="greyZero" fontType="titleOne">
+        <TextStyled tag="h2" color="greyZero" fontType="titleOne">
           Carregando...
         </TextStyled>
       </LoginPageStyled>
@@ -23,13 +23,13 @@ export const LoginPage = ({ setUser }) => {
       <div>
         <Logo />
         <div>
-          <TextStyled type="legend" color="greyZero" fontType="titleOne">
+          <TextStyled tag="h2" color="greyZero" fontType="titleOne">
             Login
           </TextStyled>
 
           <FormLogin setUser={setUser} setIsLoading={setIsLoading} />
 
-          <TextStyled type="span" color="greyZero" fontType="headline">
+          <TextStyled tag="span" color="greyZero" fontType="headline">
             Ainda não possui uma conta?
           </TextStyled>
 

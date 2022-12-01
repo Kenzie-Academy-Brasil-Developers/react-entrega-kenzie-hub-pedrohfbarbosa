@@ -46,10 +46,13 @@ export const Link = styled(LinkRouter)`
       case "linkMinor":
         return css`
           background-color: ${({ theme }) => theme.greyThree};
+
           height: 2rem;
+          padding: 0 1rem;
+
           font-size: 0.75rem;
           font-weight: 600;
-          padding: 0 1rem;
+
           &:hover {
             background-color: ${({ theme }) => theme.greyTwo};
           }

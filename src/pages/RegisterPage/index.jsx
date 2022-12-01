@@ -1,7 +1,7 @@
 import { RegisterPageStyled } from "./styles";
 import { useState } from "react";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
-import { FormRegister } from "../../components/Forms/FormRegister";
+import { FormRegister } from "./FormRegister";
 import { Header } from "../../components/Header";
 import { Link } from "../../styles/globalComponents/Link/LinkStyled";
 
@@ -11,7 +11,7 @@ export const RegisterPage = ({ setUser }) => {
   if (isLoading) {
     return (
       <RegisterPageStyled>
-        <TextStyled type="legend" color="greyZero" fontType="titleOne">
+        <TextStyled tag="h2" color="greyZero" fontType="titleOne">
           Carregando...
         </TextStyled>
       </RegisterPageStyled>
@@ -27,11 +27,11 @@ export const RegisterPage = ({ setUser }) => {
         </Header>
 
         <div>
-          <TextStyled type="legend" color="greyZero" fontType="titleOne">
+          <TextStyled tag="h2" color="greyZero" fontType="titleOne">
             Crie sua conta
           </TextStyled>
 
-          <TextStyled type="span" color="greyOne" fontType="headline">
+          <TextStyled tag="span" color="greyOne" fontType="headline">
             Rapido e grátis, vamos nessa
           </TextStyled>
 

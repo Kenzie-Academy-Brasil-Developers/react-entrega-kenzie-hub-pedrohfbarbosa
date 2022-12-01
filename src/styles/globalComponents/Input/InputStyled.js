@@ -7,6 +7,7 @@ export const Input = styled.input`
 
   font-size: 1rem;
   font-weight: 400;
+
   color: ${({ theme }) => theme.greyZero};
 
   outline: none;

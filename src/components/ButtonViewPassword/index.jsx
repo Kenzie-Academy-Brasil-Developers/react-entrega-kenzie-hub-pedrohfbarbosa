@@ -1,7 +1,7 @@
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { ButtonViewStyled } from "./styles";
 
-export const ButtonView = ({ showPassword, setShowPassword }) => {
+export const ButtonViewPassword = ({ showPassword, setShowPassword }) => {
   const handleClick = () => {
     setShowPassword(!showPassword);
   };

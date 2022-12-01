@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 export const Select = styled.select`
   cursor: pointer;
+
   height: 48px;
   width: ${({ width }) => width};
+
   padding: 0 1rem;
 
   font-size: 1rem;
@@ -19,6 +21,7 @@ export const Select = styled.select`
 
   &:focus {
     border: 1px solid ${({ theme }) => theme.greyZero};
+
     color: ${({ theme }) => theme.greyZero};
   }
 `;
