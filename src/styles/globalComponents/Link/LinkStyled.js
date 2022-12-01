@@ -21,8 +21,8 @@ export const Link = styled(LinkRouter)`
 
   color: ${({ theme }) => theme.white};
 
-  ${({ linkStyle }) => {
-    switch (linkStyle) {
+  ${({ anchor }) => {
+    switch (anchor) {
       case "primary":
         return css`
           background-color: ${({ theme }) => theme.primary};
