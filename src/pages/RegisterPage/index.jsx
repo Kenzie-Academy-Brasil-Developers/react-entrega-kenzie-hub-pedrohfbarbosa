@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
+import { ContainerMotion } from "../../components/ContainerMotion";
 import { RegisterPageStyled } from "./styles";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 import { FormRegister } from "./FormRegister";
@@ -19,12 +19,7 @@ export const RegisterPage = ({ setUser }) => {
     );
   }
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 1 }}
-    >
+    <ContainerMotion>
       <RegisterPageStyled>
         <div>
           <Header>
@@ -46,6 +41,6 @@ export const RegisterPage = ({ setUser }) => {
           </div>
         </div>
       </RegisterPageStyled>
-    </motion.div>
+    </ContainerMotion>
   );
 };
