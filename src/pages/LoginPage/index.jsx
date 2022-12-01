@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Logo } from "../../components/Logo";
 import { LoginPageStyled } from "./styles";
-import { useState } from "react";
 import { FormLogin } from "./FormLogin";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 import { Link } from "../../styles/globalComponents/Link/LinkStyled";
