@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { DashboardStyled } from "./styles";
@@ -16,38 +17,46 @@ export const Dashboard = ({ user, setUser }) => {
   };
 
   return (
-    <DashboardStyled>
-      <Container>
-        <Header>
-          <Button onClick={handleLogout} btnType="btnMinor">
-            Sair
-          </Button>
-        </Header>
-      </Container>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <DashboardStyled>
+        <Container>
+          <Header>
+            <Button onClick={handleLogout} btnType="btnMinor">
+              Sair
+            </Button>
+          </Header>
+        </Container>
 
-      <main>
-        <div>
+        <main>
+          <div>
+            <Container>
+              <TextStyled tag="h2" fontType="titleOne" color="greyZero">
+                Olá, {user.name}
+              </TextStyled>
+
+              <TextStyled tag="p" fontType="headlineBold" color="greyOne">
+                {user.course_module}
+              </TextStyled>
+            </Container>
+          </div>
+
           <Container>
             <TextStyled tag="h2" fontType="titleOne" color="greyZero">
-              Olá, {user.name}
+              Que pena! Estamos em desenvolvimento {":("}
             </TextStyled>
 
-            <TextStyled tag="p" fontType="headlineBold" color="greyOne">
-              {user.course_module}
+            <TextStyled tag="p" fontType="textDefault" color="greyZero">
+              Nossa aplicação está em desenvolvimento, em breve teremos
+              novidades
             </TextStyled>
           </Container>
-        </div>
-
-        <Container>
-          <TextStyled tag="h2" fontType="titleOne" color="greyZero">
-            Que pena! Estamos em desenvolvimento {":("}
-          </TextStyled>
-
-          <TextStyled tag="p" fontType="textDefault" color="greyZero">
-            Nossa aplicação está em desenvolvimento, em breve teremos novidades
-          </TextStyled>
-        </Container>
-      </main>
-    </DashboardStyled>
+        </main>
+      </DashboardStyled>
+    </motion.div>
   );
 };
