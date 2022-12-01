@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { ContainerMotion } from "../../components/ContainerMotion";
 import { Header } from "../../components/Header";
 import { DashboardStyled } from "./styles";
 import { Button } from "../../styles/globalComponents/Button/ButtonStyled";
@@ -17,12 +17,7 @@ export const Dashboard = ({ user, setUser }) => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 1 }}
-    >
+    <ContainerMotion>
       <DashboardStyled>
         <Container>
           <Header>
@@ -57,6 +52,6 @@ export const Dashboard = ({ user, setUser }) => {
           </Container>
         </main>
       </DashboardStyled>
-    </motion.div>
+    </ContainerMotion>
   );
 };

@@ -1,10 +1,11 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
+import { ContainerMotion } from "../../components/ContainerMotion";
 import { Logo } from "../../components/Logo";
 import { LoginPageStyled } from "./styles";
 import { FormLogin } from "./FormLogin";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 import { Link } from "../../styles/globalComponents/Link/LinkStyled";
+
 export const LoginPage = ({ setUser }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,12 +20,7 @@ export const LoginPage = ({ setUser }) => {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: .8 }}
-    >
+    <ContainerMotion>
       <LoginPageStyled>
         <div>
           <Logo />
@@ -45,6 +41,6 @@ export const LoginPage = ({ setUser }) => {
           </div>
         </div>
       </LoginPageStyled>
-    </motion.div>
+    </ContainerMotion>
   );
 };
