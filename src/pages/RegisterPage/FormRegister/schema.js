@@ -16,5 +16,5 @@ export const schemaRegister = yup.object().shape({
     .oneOf([yup.ref("password"), null], "Senhas devem ser iguais"),
   bio: yup.string().required("Bio obrigatório"),
   contact: yup.string().required("Contato obrigatório"),
-  course_module: yup.string().required("Selecionar módulo obrigatório"),
+  course_module: yup.string().required("Selecione seu módulo"),
 });
