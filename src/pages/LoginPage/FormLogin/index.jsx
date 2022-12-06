@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { toastStyle } from "../../../styles/toast";
-import { instance } from "../../../services/api/api";
+import { useContext } from "react";
+
 import { schemaLogin } from "./schema";
 import { Form } from "../../../styles/globalComponents/Form/FormStyled";
 import { InputWrapper } from "../../../components/InputWrapper";
 import { ButtonViewPassword } from "../../../components/ButtonViewPassword";
 import { Input } from "../../../styles/globalComponents/Input/InputStyled";
 import { Button } from "../../../styles/globalComponents/Button/ButtonStyled";
+import { UserContext } from "../../../Providers/UserContext";
 
-export const FormLogin = ({ setUser, setIsLoading }) => {
+export const FormLogin = () => {
+  const { requestLogin } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
 
   const {
     register,
@@ -24,30 +23,6 @@ export const FormLogin = ({ setUser, setIsLoading }) => {
     mode: "onBlur",
     resolver: yupResolver(schemaLogin),
   });
-
-  const requestLogin = async (data) => {
-    setIsLoading(true);
-    try {
-      const response = await instance.post("/sessions", data);
-
-      if (response.status === 200) {
-        toast.success("Login efetuado com sucesso", toastStyle);
-
-        setUser(response.data.user);
-
-        localStorage.setItem("@TOKEN", response.data.token);
-        localStorage.setItem("@USERID", response.data.user.id);
-
-        navigate("/dashboard");
-      } else {
-        toast.error("Opa! Algo deu errado", toastStyle);
-      }
-    } catch (err) {
-      toast.error("Opa! Algo deu errado", toastStyle);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const onSubmit = async (data) => {
     await requestLogin(data);

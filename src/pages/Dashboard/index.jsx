@@ -1,55 +1,40 @@
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+
 import { ContainerMotion } from "../../components/ContainerMotion";
-import { Header } from "../../components/Header";
 import { DashboardStyled } from "./styles";
-import { Button } from "../../styles/globalComponents/Button/ButtonStyled";
-import { Container } from "../../styles/globalComponents/Container/Container";
+import { DashboardLoading } from "./styles";
+
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
+import { UserContext } from "../../Providers/UserContext";
+import { DashboardHeader } from "../../components/Header/DashboardHeader";
+import { DashInfo } from "../../components/DashInfo";
+import { TechList } from "../../components/TechList";
 
-export const Dashboard = ({ user, setUser }) => {
-  const navigate = useNavigate();
+export const Dashboard = () => {
+  const { user, isLoadingDashboard } = useContext(UserContext);
 
-  const handleLogout = () => {
-    localStorage.removeItem("@TOKEN");
-    localStorage.removeItem("@USERID");
-    setUser(null);
-    navigate("/");
-  };
-
-  return (
+  if (isLoadingDashboard) {
+    return (
+      <DashboardLoading>
+        <TextStyled tag="h2" color="greyZero" fontType="titleOne">
+          Carregando...
+        </TextStyled>
+      </DashboardLoading>
+    );
+  }
+  console.log(user);
+  return !user ? (
+    <Navigate to="/" />
+  ) : (
     <ContainerMotion>
       <DashboardStyled>
-        <Container>
-          <Header>
-            <Button onClick={handleLogout} btnType="btnMinor">
-              Sair
-            </Button>
-          </Header>
-        </Container>
+        <DashboardHeader />
 
         <main>
-          <div>
-            <Container>
-              <TextStyled tag="h2" fontType="titleOne" color="greyZero">
-                Olá, {user.name}
-              </TextStyled>
-
-              <TextStyled tag="p" fontType="headlineBold" color="greyOne">
-                {user.course_module}
-              </TextStyled>
-            </Container>
-          </div>
-
-          <Container>
-            <TextStyled tag="h2" fontType="titleOne" color="greyZero">
-              Que pena! Estamos em desenvolvimento {":("}
-            </TextStyled>
-
-            <TextStyled tag="p" fontType="textDefault" color="greyZero">
-              Nossa aplicação está em desenvolvimento, em breve teremos
-              novidades
-            </TextStyled>
-          </Container>
+          <DashInfo />
+          
+          <TechList />
         </main>
       </DashboardStyled>
     </ContainerMotion>

@@ -1,10 +1,9 @@
 import { useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { toastStyle } from "../../../styles/toast";
-import { instance } from "../../../services/api/api";
+
+import { UserContext } from "../../../Providers/UserContext";
 import { schemaRegister } from "./schema";
 import { Form } from "../../../styles/globalComponents/Form/FormStyled";
 import { InputWrapper } from "../../../components/InputWrapper";
@@ -16,7 +15,8 @@ import { Button } from "../../../styles/globalComponents/Button/ButtonStyled";
 export const FormRegister = ({ setIsLoading }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showSecondPassword, setShowSecondPassword] = useState(false);
-  const navigate = useNavigate();
+
+  const { requestRegister } = useContext(UserContext);
 
   const {
     register,
@@ -26,25 +26,6 @@ export const FormRegister = ({ setIsLoading }) => {
     mode: "onBlur",
     resolver: yupResolver(schemaRegister),
   });
-
-  const requestRegister = async (data) => {
-    setIsLoading(true);
-    try {
-      const response = await instance.post("/users", data);
-
-      if (response.status === 201) {
-        toast.success("Cadastro efetuado com sucesso", toastStyle);
-
-        navigate("/");
-      } else {
-        toast.error("Opa! Algo deu errado", toastStyle);
-      }
-    } catch (err) {
-      toast.error("Opa! Algo deu errado", toastStyle);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const onSubmit = async (data) => {
     await requestRegister(data);
