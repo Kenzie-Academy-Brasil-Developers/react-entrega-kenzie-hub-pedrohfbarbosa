@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 
+import { TechContext } from "../../Providers/TechContext";
 import { ContainerMotion } from "../../components/ContainerMotion";
 import { DashboardStyled } from "./styles";
 import { DashboardLoading } from "./styles";
@@ -10,6 +11,7 @@ import { UserContext } from "../../Providers/UserContext";
 import { DashboardHeader } from "../../components/Header/DashboardHeader";
 import { DashInfo } from "../../components/DashInfo";
 import { TechList } from "../../components/TechList";
+import { Modal } from "../../components/Modal";
 
 export const Dashboard = () => {
   const { user, isLoadingDashboard } = useContext(UserContext);
@@ -28,12 +30,13 @@ export const Dashboard = () => {
     <Navigate to="/" />
   ) : (
     <ContainerMotion>
+      <Modal title="teste"/>
       <DashboardStyled>
         <DashboardHeader />
 
         <main>
           <DashInfo />
-          
+
           <TechList />
         </main>
       </DashboardStyled>

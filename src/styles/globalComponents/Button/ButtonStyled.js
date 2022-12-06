@@ -1,8 +1,6 @@
 import styled, { css } from "styled-components";
 
 export const Button = styled.button`
-  cursor: pointer;
-
   border: none;
   border-radius: ${({ theme }) => theme.radiusOne};
 

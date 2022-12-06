@@ -1,5 +1,8 @@
 import { CardStyled } from "./style";
 import { TextStyled } from "../../../styles/globalComponents/Text/TextStyled";
+import { FiEdit2 } from "react-icons/fi";
+import { BsTrash } from "react-icons/bs";
+import { CardButton } from "../../../styles/globalComponents/Button/CardButton";
 
 export const TechCard = ({ tech }) => {
   return (
@@ -12,8 +15,12 @@ export const TechCard = ({ tech }) => {
           {tech.status}
         </TextStyled>
         <div>
-          <button>Edit</button>
-          <button>Delete</button>
+          <CardButton>
+            <FiEdit2 />
+          </CardButton>
+          <CardButton>
+            <BsTrash />
+          </CardButton>
         </div>
       </div>
     </CardStyled>

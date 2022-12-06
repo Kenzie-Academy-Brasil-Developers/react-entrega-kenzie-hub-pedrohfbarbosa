@@ -15,31 +15,31 @@ export const UserProvider = ({ children }) => {
   const [isLoadingDashboard, setIsLoadingDashboard] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const getUser = async () => {
     const token = localStorage.getItem("@TOKEN");
 
-    const getUser = async () => {
-      if (!token) {
-        return;
-      }
+    if (!token) {
+      return;
+    }
 
-      try {
-        const response = await instance.get("/profile", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
+    try {
+      const response = await instance.get("/profile", {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
 
-        setUser(response.data);
-      } catch (error) {
-        console.error(error);
-        localStorage.removeItem("@TOKEN");
-        localStorage.removeItem("@USERID");
-      } finally {
-        setIsLoadingDashboard(false);
-      }
-    };
+      setUser(response.data);
+    } catch (error) {
+      console.error(error);
+      localStorage.removeItem("@TOKEN");
+      localStorage.removeItem("@USERID");
+    } finally {
+      setIsLoadingDashboard(false);
+    }
+  };
 
+  useEffect(() => {
     getUser();
   }, []);
 
@@ -96,6 +96,7 @@ export const UserProvider = ({ children }) => {
         isLoadingRegister,
         handleLogout,
         isLoadingDashboard,
+        getUser,
       }}
     >
       {children}

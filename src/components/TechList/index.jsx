@@ -4,12 +4,14 @@ import { Container } from "../../styles/globalComponents/Container/Container";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 import { TechListStyled } from "./style";
 import { TechCard } from "./TechCard";
-import {Button} from "../../styles/globalComponents/Button/ButtonStyled"
+import { Button } from "../../styles/globalComponents/Button/ButtonStyled";
 
 export const TechList = () => {
   const { user } = useContext(UserContext);
 
-  return !user.techs.length ? (
+  const { techs } = user;
+
+  return !techs.length ? (
     <Container>
       <TechListStyled>
         <TextStyled tag="h2" fontType="textButton" color="greyZero">
@@ -27,7 +29,7 @@ export const TechList = () => {
           <Button btnType="btnMinor">+</Button>
         </div>
         <ul>
-          {user.techs.map((e) => (
+          {techs.map((e) => (
             <TechCard key={e.id} tech={e} />
           ))}
         </ul>

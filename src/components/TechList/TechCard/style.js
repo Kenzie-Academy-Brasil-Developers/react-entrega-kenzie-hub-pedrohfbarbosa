@@ -4,6 +4,10 @@ export const CardStyled = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+
+  min-height: 3.2rem;
+
   background-color: ${({ theme }) => theme.greyFour};
 
   padding: 1rem;
@@ -16,12 +20,19 @@ export const CardStyled = styled.li`
     gap: 1rem;
   }
 
-  /* @media (max-width: 500px) {
+  & > div > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 21.875rem) {
     flex-direction: column;
-    gap: 2rem;
 
     & > div {
       flex-direction: column;
     }
-  } */
+  }
 `;
+
+

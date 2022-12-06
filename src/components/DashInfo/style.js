@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const DashInfoStyled = styled.section`
-  width: 100vw;
   min-height: 7.375rem;
 
   display: flex;
@@ -15,7 +14,7 @@ export const DashInfoStyled = styled.section`
     justify-content: space-between;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 56.25rem) {
     & > div {
       flex-direction: column;
       align-items: center;

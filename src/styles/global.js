@@ -23,4 +23,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', sans-serif;
     background-color: #121214;
   }
+
+  button {
+    cursor: pointer;
+  }
 `;
