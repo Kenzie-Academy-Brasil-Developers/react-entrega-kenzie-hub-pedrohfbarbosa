@@ -30,10 +30,10 @@ export const UserProvider = ({ children }) => {
 
       setUser(response.data);
     } catch (err) {
-      toast.error("Opa! Algo deu errado", toastStyle);
-
       localStorage.removeItem("@TOKEN");
       localStorage.removeItem("@USERID");
+
+      toast.error("Acesso não autorizado", toastStyle);
     } finally {
       setIsLoadingPage(false);
     }
@@ -64,7 +64,11 @@ export const UserProvider = ({ children }) => {
 
       navigate("/dashboard");
     } catch (err) {
-      toast.error(err.response.data.message, toastStyle);
+      const { message } = err.response.data;
+
+      message.toLowerCase().includes("incorrect")
+        ? toast.error("E-mail ou senha incorretos", toastStyle)
+        : toast.error("Opa! Algo deu errado", toastStyle);
     } finally {
       setIsLoadingLogin(false);
     }
@@ -80,7 +84,11 @@ export const UserProvider = ({ children }) => {
 
       navigate("/");
     } catch (err) {
-      toast.error(err.response.data.message, toastStyle);
+      const { message } = err.response.data;
+
+      message.toLowerCase().includes("already")
+        ? toast.error("Opa! E-mail já cadastrado", toastStyle)
+        : toast.error("Opa! Algo deu errado", toastStyle);
     } finally {
       setIsLoadingRegister(false);
     }
