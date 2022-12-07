@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Input = styled.input`
-  height: 48px;
+  height: 3rem;
   max-width: ${({ width }) => width};
   width: 100%;
   padding: 0 1rem;

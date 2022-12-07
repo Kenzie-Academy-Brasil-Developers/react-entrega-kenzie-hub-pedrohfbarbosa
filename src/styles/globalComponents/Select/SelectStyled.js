@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Select = styled.select`
   cursor: pointer;
 
-  height: 48px;
+  height: 3rem;
   width: ${({ width }) => width};
 
   padding: 0 1rem;
