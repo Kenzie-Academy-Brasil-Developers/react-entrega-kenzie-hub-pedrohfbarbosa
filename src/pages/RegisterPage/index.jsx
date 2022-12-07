@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useContext } from "react";
+
 import { ContainerMotion } from "../../components/ContainerMotion";
 import { RegisterPageStyled } from "./styles";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 import { FormRegister } from "./FormRegister";
 import { Header } from "../../components/Header";
 import { Link } from "../../styles/globalComponents/Link/LinkStyled";
+import { UserContext } from "../../Providers/UserContext";
 
-export const RegisterPage = ({ setUser }) => {
-  const [isLoading, setIsLoading] = useState(false);
+export const RegisterPage = () => {
+  const { isLoadingRegister } = useContext(UserContext);
 
-  if (isLoading) {
+  if (isLoadingRegister) {
     return (
       <RegisterPageStyled>
         <TextStyled tag="h2" color="greyZero" fontType="titleOne">
@@ -37,7 +39,7 @@ export const RegisterPage = ({ setUser }) => {
               Rapido e grátis, vamos nessa
             </TextStyled>
 
-            <FormRegister setUser={setUser} setIsLoading={setIsLoading} />
+            <FormRegister />
           </div>
         </div>
       </RegisterPageStyled>

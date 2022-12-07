@@ -11,6 +11,7 @@ export const theme = {
   failure: "#E83F5B",
   white: "#fff",
   black: "#000",
+  modalBg: "rgba(0, 0, 0, 0.5)",
 
   radiusOne: "0.25rem",
 
@@ -61,7 +62,7 @@ export const theme = {
   },
 
   textAlert: {
-    fontSize: "10px",
+    fontSize: "0.625rem",
     fontWeight: "400",
   },
 };

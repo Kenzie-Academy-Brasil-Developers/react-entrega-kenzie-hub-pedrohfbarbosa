@@ -1,57 +1,32 @@
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { TechContext } from "../../Providers/TechContext";
 import { ContainerMotion } from "../../components/ContainerMotion";
-import { Header } from "../../components/Header";
 import { DashboardStyled } from "./styles";
-import { Button } from "../../styles/globalComponents/Button/ButtonStyled";
-import { Container } from "../../styles/globalComponents/Container/Container";
-import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
+import { DashboardHeader } from "../../components/Header/DashboardHeader";
+import { DashInfo } from "../../components/DashInfo";
+import { TechList } from "../../components/TechList";
+import { ModalCreate } from "../../components/Modal/ModalCreate";
+import { ModalEdit } from "../../components/Modal/ModalEdit";
+import { ModalDelete } from "../../components/Modal/ModalDelete";
 
-export const Dashboard = ({ user, setUser }) => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("@TOKEN");
-    localStorage.removeItem("@USERID");
-    setUser(null);
-    navigate("/");
-  };
+export const Dashboard = () => {
+  const { isModalCreate, editTech, deleteTech } = useContext(TechContext);
 
   return (
     <ContainerMotion>
       <DashboardStyled>
-        <Container>
-          <Header>
-            <Button onClick={handleLogout} btnType="btnMinor">
-              Sair
-            </Button>
-          </Header>
-        </Container>
+        <DashboardHeader />
 
         <main>
-          <div>
-            <Container>
-              <TextStyled tag="h2" fontType="titleOne" color="greyZero">
-                Olá, {user.name}
-              </TextStyled>
+          <DashInfo />
 
-              <TextStyled tag="p" fontType="headlineBold" color="greyOne">
-                {user.course_module}
-              </TextStyled>
-            </Container>
-          </div>
-
-          <Container>
-            <TextStyled tag="h2" fontType="titleOne" color="greyZero">
-              Que pena! Estamos em desenvolvimento {":("}
-            </TextStyled>
-
-            <TextStyled tag="p" fontType="textDefault" color="greyZero">
-              Nossa aplicação está em desenvolvimento, em breve teremos
-              novidades
-            </TextStyled>
-          </Container>
+          <TechList />
         </main>
       </DashboardStyled>
+
+      {isModalCreate && <ModalCreate />}
+      {editTech && <ModalEdit />}
+      {deleteTech && <ModalDelete />}
     </ContainerMotion>
   );
 };
