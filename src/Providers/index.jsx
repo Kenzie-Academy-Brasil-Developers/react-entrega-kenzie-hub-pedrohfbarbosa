@@ -1,4 +1,3 @@
-import React from "react";
 import { UserProvider } from "./UserContext";
 import { TechProvider } from "./TechContext";
 
