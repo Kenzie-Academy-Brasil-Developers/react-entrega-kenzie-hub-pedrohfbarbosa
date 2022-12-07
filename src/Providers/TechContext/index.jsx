@@ -29,7 +29,11 @@ export const TechProvider = ({ children }) => {
 
       setIsModalCreate(null);
     } catch (err) {
-      toast.error(err.response.data.message, toastStyle);
+      const { message } = err.response.data;
+      
+      message.toLowerCase().includes("already")
+        ? toast.error("Opa! Tecnologia já cadastrada", toastStyle)
+        : toast.error("Opa! Algo deu errado", toastStyle);
     } finally {
       setIsLoadingCreate(false);
     }
@@ -47,7 +51,7 @@ export const TechProvider = ({ children }) => {
 
       setEditTech(null);
     } catch (err) {
-      toast.error("Opa! Algo deu errado", toastStyle);
+      toast.error("Opa! Não foi possível editar sua tecnologia", toastStyle);
     } finally {
       setIsLoadingEdit(false);
     }
@@ -65,7 +69,7 @@ export const TechProvider = ({ children }) => {
 
       setDeleteTech(null);
     } catch (err) {
-      toast.error("Opa! Algo deu errado", toastStyle);
+      toast.error("Opa! Não foi possível remover sua tecnologia", toastStyle);
     } finally {
       setIsLoadingDelete(false);
     }
