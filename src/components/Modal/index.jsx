@@ -1,10 +1,9 @@
 import { useRef } from "react";
-
-import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
-import { ModalStyled, ModalWrapper } from "./style";
 import { AiOutlineClose } from "react-icons/ai";
-import { CardButton } from "../../styles/globalComponents/Button/CardButton";
 import { ContainerMotion } from "../ContainerMotion";
+import { ModalStyled, ModalWrapper } from "./style";
+import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
+import { CardButton } from "../../styles/globalComponents/Button/CardButton";
 
 export const Modal = ({ children, title, setModalId }) => {
   const ref = useRef(null);

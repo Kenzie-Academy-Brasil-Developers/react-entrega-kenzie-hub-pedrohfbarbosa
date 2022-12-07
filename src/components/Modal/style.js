@@ -4,6 +4,8 @@ export const ModalStyled = styled.div`
   height: 100vh;
   width: 100%;
 
+  padding: 1rem;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -13,15 +15,15 @@ export const ModalStyled = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color:${({theme}) => theme.modalBg};
-`
+  background-color: ${({ theme }) => theme.modalBg};
+`;
 
 export const ModalWrapper = styled.div`
   width: 100%;
   max-width: 23.0625rem;
-  
-  border-radius: ${({theme}) => theme.radiusOne};
-  background-color: ${({theme}) => theme.greyThree};
+
+  border-radius: ${({ theme }) => theme.radiusOne};
+  background-color: ${({ theme }) => theme.greyThree};
 
   display: flex;
   flex-direction: column;
@@ -29,16 +31,16 @@ export const ModalWrapper = styled.div`
 
   overflow: hidden;
 
-  & > div:nth-of-type(1){
+  & > div:nth-of-type(1) {
     padding: 1rem;
     display: flex;
     justify-content: space-between;
 
-    background-color: ${({theme}) => theme.greyTwo};
+    background-color: ${({ theme }) => theme.greyTwo};
     min-height: 3.125rem;
   }
 
-  & > div:nth-of-type(2){
-    padding: 1rem;   
+  & > div:nth-of-type(2) {
+    padding: 1rem;
   }
-`
+`;

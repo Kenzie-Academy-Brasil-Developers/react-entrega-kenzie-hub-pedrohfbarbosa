@@ -8,4 +8,4 @@ export const ModalDeleteBody = styled.div`
   & > h3 {
     text-align: center;
   }
-`
+`;

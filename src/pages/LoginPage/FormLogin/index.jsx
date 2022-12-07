@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
-
 import { schemaLogin } from "./schema";
 import { Form } from "../../../styles/globalComponents/Form/FormStyled";
 import { InputWrapper } from "../../../components/InputWrapper";

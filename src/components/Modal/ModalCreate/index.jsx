@@ -2,18 +2,18 @@ import React from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-import { Modal } from "..";
 import { TechContext } from "../../../Providers/TechContext";
+import { schemaCreate } from "./schema";
+import { Modal } from "..";
 import { Form } from "../../../styles/globalComponents/Form/FormStyled";
 import { InputWrapper } from "../../InputWrapper";
 import { Input } from "../../../styles/globalComponents/Input/InputStyled";
 import { Select } from "../../../styles/globalComponents/Select/SelectStyled";
-import { schemaCreate } from "./schema";
 import { Button } from "../../../styles/globalComponents/Button/ButtonStyled";
 
 export const ModalCreate = () => {
-  const { setIsModalCreate, handleCreate, isLoadingCreate } = useContext(TechContext);
+  const { setIsModalCreate, handleCreate, isLoadingCreate } =
+    useContext(TechContext);
 
   const {
     register,

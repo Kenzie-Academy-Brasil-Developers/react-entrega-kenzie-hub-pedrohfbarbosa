@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { UserContext } from "../../../Providers/UserContext";
 import { schemaRegister } from "./schema";
 import { Form } from "../../../styles/globalComponents/Form/FormStyled";

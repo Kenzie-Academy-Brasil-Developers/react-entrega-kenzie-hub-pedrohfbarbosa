@@ -11,7 +11,9 @@ export const Routes = ({ user, setUser }) => {
       <AnimatePresence>
         <RoutesMain>
           <Route path="/" element={<LoginPage />} />
+
           <Route path="/register" element={<RegisterPage />} />
+
           <Route element={<ProtectedRoutes />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>

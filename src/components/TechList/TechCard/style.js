@@ -8,9 +8,9 @@ export const CardStyled = styled.li`
 
   min-height: 3.2rem;
 
-  background-color: ${({ theme }) => theme.greyFour};
-
   padding: 1rem;
+
+  background-color: ${({ theme }) => theme.greyFour};
 
   border-radius: ${({ theme }) => theme.radiusOne};
 
@@ -34,5 +34,3 @@ export const CardStyled = styled.li`
     }
   }
 `;
-
-

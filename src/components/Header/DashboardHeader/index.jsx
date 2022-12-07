@@ -1,7 +1,7 @@
 import { useContext } from "react";
+import { UserContext } from "../../../Providers/UserContext";
 import { Container } from "../../../styles/globalComponents/Container/Container";
 import { Header } from "..";
-import { UserContext } from "../../../Providers/UserContext";
 import { Button } from "../../../styles/globalComponents/Button/ButtonStyled";
 
 export const DashboardHeader = () => {

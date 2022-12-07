@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { UserContext } from "../../Providers/UserContext";
 import { Container } from "../../styles/globalComponents/Container/Container";
-import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 import { DashInfoStyled } from "./style";
+import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 
 export const DashInfo = () => {
   const { user } = useContext(UserContext);

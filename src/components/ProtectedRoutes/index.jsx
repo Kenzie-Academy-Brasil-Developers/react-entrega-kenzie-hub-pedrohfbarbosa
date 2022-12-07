@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { ProtectedLoading } from "./style";
-
 import { UserContext } from "../../Providers/UserContext";
+import { ProtectedLoading } from "./style";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
 
 export const ProtectedRoutes = () => {
@@ -18,5 +17,5 @@ export const ProtectedRoutes = () => {
     );
   }
 
-  return !user ? <Navigate to="/" /> : <Outlet />;
+  return user ? <Outlet /> : <Navigate to="/" />;
 };
