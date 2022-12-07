@@ -1,10 +1,8 @@
-import { useContext } from "react";
+import { useContext, createContext, useState } from "react";
 import { toast } from "react-toastify";
 import { instance } from "../../services/api/api";
 import { UserContext } from "../UserContext";
 import { toastStyle } from "../../styles/toast";
-
-const { createContext, useState } = require("react");
 
 export const TechContext = createContext({});
 
