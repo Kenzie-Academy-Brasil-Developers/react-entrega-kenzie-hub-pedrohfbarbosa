@@ -1,10 +1,22 @@
-import { CardStyled } from "./style";
-import { TextStyled } from "../../../styles/globalComponents/Text/TextStyled";
+import { useContext } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { BsTrash } from "react-icons/bs";
+import { CardStyled } from "./style";
+import { TextStyled } from "../../../styles/globalComponents/Text/TextStyled";
 import { CardButton } from "../../../styles/globalComponents/Button/CardButton";
+import { TechContext } from "../../../Providers/TechContext";
 
 export const TechCard = ({ tech }) => {
+  const { setEditTech, setDeleteTech } = useContext(TechContext);
+
+  const handleOpenEditModal = () => {
+    setEditTech(tech);
+  };
+
+  const handleOpenDeleteModal = () => {
+    setDeleteTech(tech);
+  };
+
   return (
     <CardStyled>
       <TextStyled tag="h3" fontType="titleThree" color="white">
@@ -15,10 +27,10 @@ export const TechCard = ({ tech }) => {
           {tech.status}
         </TextStyled>
         <div>
-          <CardButton>
+          <CardButton onClick={handleOpenEditModal}>
             <FiEdit2 />
           </CardButton>
-          <CardButton>
+          <CardButton onClick={handleOpenDeleteModal}>
             <BsTrash />
           </CardButton>
         </div>

@@ -2,37 +2,44 @@ import { useContext } from "react";
 import { UserContext } from "../../Providers/UserContext";
 import { Container } from "../../styles/globalComponents/Container/Container";
 import { TextStyled } from "../../styles/globalComponents/Text/TextStyled";
-import { TechListStyled } from "./style";
+import { EmptyList, TechListStyled } from "./style";
 import { TechCard } from "./TechCard";
 import { Button } from "../../styles/globalComponents/Button/ButtonStyled";
+import { TechContext } from "../../Providers/TechContext";
 
 export const TechList = () => {
   const { user } = useContext(UserContext);
-
+  const { setIsModalCreate } = useContext(TechContext);
   const { techs } = user;
 
-  return !techs.length ? (
-    <Container>
-      <TechListStyled>
-        <TextStyled tag="h2" fontType="textButton" color="greyZero">
-          Ainda não existem tecnologias cadastradas
-        </TextStyled>
-      </TechListStyled>
-    </Container>
-  ) : (
+  const handleOpenModal = () => {
+    setIsModalCreate(true);
+  };
+
+  return (
     <Container>
       <TechListStyled>
         <div>
           <TextStyled tag="h2" color="greyZero" fontType="titleTwo">
             Tecnologias
           </TextStyled>
-          <Button btnType="btnMinor">+</Button>
+          <Button onClick={handleOpenModal} btnType="btnMinor">
+            +
+          </Button>
         </div>
-        <ul>
-          {techs.map((e) => (
-            <TechCard key={e.id} tech={e} />
-          ))}
-        </ul>
+        {!techs.length ? (
+          <EmptyList>
+            <TextStyled tag="p" fontType="textDefault" color="greyZero">
+              Ainda não existem tecnologias cadastradas
+            </TextStyled>
+          </EmptyList>
+        ) : (
+          <ul>
+            {techs.map((e) => (
+              <TechCard key={e.id} tech={e} />
+            ))}
+          </ul>
+        )}
       </TechListStyled>
     </Container>
   );

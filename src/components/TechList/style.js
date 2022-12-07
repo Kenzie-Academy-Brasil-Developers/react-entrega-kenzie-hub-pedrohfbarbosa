@@ -5,7 +5,7 @@ export const TechListStyled = styled.section`
   flex-direction: column;
   gap: 1rem;
 
-  & > div {
+  & > div:nth-of-type(1) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,4 +25,13 @@ export const TechListStyled = styled.section`
     flex-direction: column;
     gap: 1rem;
   }
+`;
+
+export const EmptyList = styled.div`
+  padding: 2rem 0;
+
+  text-align: center;
+  border: 1px solid ${({ theme }) => theme.greyThree};
+
+  border-radius: ${({ theme }) => theme.radiusOne};
 `;

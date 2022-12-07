@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
     const token = localStorage.getItem("@TOKEN");
 
     if (!token) {
+      setIsLoadingDashboard(false);
       return;
     }
 
@@ -30,8 +31,8 @@ export const UserProvider = ({ children }) => {
       });
 
       setUser(response.data);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      toast.error(err.response.data.message, toastStyle);
       localStorage.removeItem("@TOKEN");
       localStorage.removeItem("@USERID");
     } finally {
@@ -56,9 +57,10 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem("@USERID", response.data.user.id);
 
       setIsLoadingDashboard(false);
+
       navigate("/dashboard");
     } catch (err) {
-      toast.error("Opa! Algo deu errado", toastStyle);
+      toast.error(err.response.data.message, toastStyle);
     } finally {
       setIsLoadingLogin(false);
     }
@@ -73,7 +75,7 @@ export const UserProvider = ({ children }) => {
 
       navigate("/");
     } catch (err) {
-      toast.error("Opa! Algo deu errado", toastStyle);
+      toast.error(err.response.data.message, toastStyle);
     } finally {
       setIsLoadingRegister(false);
     }

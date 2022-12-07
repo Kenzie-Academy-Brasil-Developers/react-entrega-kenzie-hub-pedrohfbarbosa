@@ -11,10 +11,14 @@ import { UserContext } from "../../Providers/UserContext";
 import { DashboardHeader } from "../../components/Header/DashboardHeader";
 import { DashInfo } from "../../components/DashInfo";
 import { TechList } from "../../components/TechList";
-import { Modal } from "../../components/Modal";
+
+import { ModalCreate } from "../../components/Modal/ModalCreate";
+import { ModalEdit } from "../../components/Modal/ModalEdit";
+import { ModalDelete } from "../../components/Modal/ModalDelete";
 
 export const Dashboard = () => {
   const { user, isLoadingDashboard } = useContext(UserContext);
+  const { isModalCreate, editTech, deleteTech } = useContext(TechContext);
 
   if (isLoadingDashboard) {
     return (
@@ -25,12 +29,14 @@ export const Dashboard = () => {
       </DashboardLoading>
     );
   }
-  console.log(user);
+
   return !user ? (
     <Navigate to="/" />
   ) : (
     <ContainerMotion>
-      <Modal title="teste"/>
+      {isModalCreate && <ModalCreate />}
+      {editTech && <ModalEdit />}
+      {deleteTech && <ModalDelete />}
       <DashboardStyled>
         <DashboardHeader />
 
