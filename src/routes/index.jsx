@@ -3,18 +3,18 @@ import { AnimatePresence } from "framer-motion";
 import { Dashboard } from "../pages/Dashboard";
 import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
+import { ProtectedRoutes } from "../components/ProtectedRoutes";
 
 export const Routes = ({ user, setUser }) => {
   return (
     <>
       <AnimatePresence>
         <RoutesMain>
-          <Route path="/" element={<LoginPage setUser={setUser} />} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route
-            path="/dashboard"
-            element={<Dashboard user={user} setUser={setUser} />}
-          />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
         </RoutesMain>
       </AnimatePresence>
     </>

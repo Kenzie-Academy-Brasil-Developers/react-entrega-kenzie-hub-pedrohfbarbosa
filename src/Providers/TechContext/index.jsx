@@ -20,17 +20,15 @@ export const TechProvider = ({ children }) => {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
 
   const handleCreate = async (data) => {
-    const token = localStorage.getItem("@TOKEN");
     setIsLoadingCreate(true);
 
     try {
-      await instance.post("/users/techs", data, {
-        headers: { authorization: `Bearer ${token}` },
-      });
+      await instance.post("/users/techs", data);
 
       await getUser();
 
       toast.success("Tecnologia criada com sucesso", toastStyle);
+
       setIsModalCreate(null);
     } catch (err) {
       toast.error(err.response.data.message, toastStyle);
@@ -40,40 +38,36 @@ export const TechProvider = ({ children }) => {
   };
 
   const handleEdit = async (data) => {
-    const token = localStorage.getItem("@TOKEN");
     setIsLoadingEdit(true);
 
     try {
-      await instance.put(`/users/techs/${editTech.id}`, data, {
-        headers: { authorization: `Bearer ${token}` },
-      });
+      await instance.put(`/users/techs/${editTech.id}`, data);
 
       await getUser();
 
       toast.success("Tecnologia editada com sucesso", toastStyle);
+
       setEditTech(null);
     } catch (err) {
-      toast.error(err.response.data.message, toastStyle);
+      toast.error("Opa! Algo deu errado", toastStyle);
     } finally {
       setIsLoadingEdit(false);
     }
   };
 
   const handleDelete = async () => {
-    const token = localStorage.getItem("@TOKEN");
     setIsLoadingDelete(true);
 
     try {
-      await instance.delete(`/users/techs/${deleteTech.id}`, {
-        headers: { authorization: `Bearer ${token}` },
-      });
+      await instance.delete(`/users/techs/${deleteTech.id}`);
 
       await getUser();
 
       toast.warn("Tecnologia removida com sucesso", toastStyle);
+
       setDeleteTech(null);
     } catch (err) {
-      toast.error(err.response.data.message, toastStyle);
+      toast.error("Opa! Algo deu errado", toastStyle);
     } finally {
       setIsLoadingDelete(false);
     }

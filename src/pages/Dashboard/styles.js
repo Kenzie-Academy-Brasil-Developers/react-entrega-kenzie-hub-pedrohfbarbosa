@@ -6,10 +6,3 @@ export const DashboardStyled = styled.div`
   flex-direction: column;
   gap: 1rem;
 `;
-
-export const DashboardLoading = styled.div`
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`

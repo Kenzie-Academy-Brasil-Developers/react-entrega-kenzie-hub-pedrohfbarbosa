@@ -10,33 +10,34 @@ export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+
   const [isLoadingLogin, setIsLoadingLogin] = useState(false);
   const [isLoadingRegister, setIsLoadingRegister] = useState(false);
-  const [isLoadingDashboard, setIsLoadingDashboard] = useState(true);
+  const [isLoadingPage, setIsLoadingPage] = useState(true);
+
   const navigate = useNavigate();
 
   const getUser = async () => {
     const token = localStorage.getItem("@TOKEN");
 
     if (!token) {
-      setIsLoadingDashboard(false);
+      setIsLoadingPage(false);
       return;
     }
 
     try {
-      const response = await instance.get("/profile", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+      const response = await instance.get("/profile");
 
       setUser(response.data);
     } catch (err) {
-      toast.error(err.response.data.message, toastStyle);
+      toast.error("Opa! Algo deu errado", toastStyle);
+
       localStorage.removeItem("@TOKEN");
       localStorage.removeItem("@USERID");
     } finally {
-      setIsLoadingDashboard(false);
+      setIsLoadingPage(false);
     }
   };
 
@@ -46,6 +47,7 @@ export const UserProvider = ({ children }) => {
 
   const requestLogin = async (data) => {
     setIsLoadingLogin(true);
+
     try {
       const response = await instance.post("/sessions", data);
 
@@ -56,7 +58,11 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem("@TOKEN", response.data.token);
       localStorage.setItem("@USERID", response.data.user.id);
 
-      setIsLoadingDashboard(false);
+      setIsLoadingPage(false);
+
+      instance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${localStorage.getItem("@TOKEN")}`;
 
       navigate("/dashboard");
     } catch (err) {
@@ -68,6 +74,7 @@ export const UserProvider = ({ children }) => {
 
   const requestRegister = async (data) => {
     setIsLoadingRegister(true);
+
     try {
       await instance.post("/users", data);
 
@@ -84,7 +91,9 @@ export const UserProvider = ({ children }) => {
   const handleLogout = () => {
     localStorage.removeItem("@TOKEN");
     localStorage.removeItem("@USERID");
+
     setUser(null);
+
     navigate("/");
   };
 
@@ -97,7 +106,7 @@ export const UserProvider = ({ children }) => {
         requestRegister,
         isLoadingRegister,
         handleLogout,
-        isLoadingDashboard,
+        isLoadingPage,
         getUser,
       }}
     >
